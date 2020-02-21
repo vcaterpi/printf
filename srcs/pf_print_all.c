@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 23:46:44 by antondob          #+#    #+#             */
-/*   Updated: 2020/02/21 03:06:25 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:45:21 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@ void	print_char(t_params *params, char c)
 
 void	print_string(t_params *params)
 {
-	if (params->char_nul == 1)
+	if (params->char_nul == 1 && params->align == 'l')
 	{
 		ft_putchar(0);
 		params->ret++;
 	}
 	ft_putstr(params->str);
+	if (params->char_nul == 1 && params->align == 'r')
+	{
+		ft_putchar(0);
+		params->ret++;
+	}
 	params->ret += ft_strlen(params->str);
 }

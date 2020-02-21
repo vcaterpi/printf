@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 17:56:46 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/02/21 02:18:39 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/21 12:35:44 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,5 @@ void		parse_params(t_params *params)
 	parse_preci(params);
 	parse_length(params);
 	parse_conversion(params);
+	//ft_putchar(params->align);
 }
