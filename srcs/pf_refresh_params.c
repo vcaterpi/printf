@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 18:17:50 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/02/20 23:46:30 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/21 21:58:32 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void	init_params(t_params *params, char *format)
 	params->ret = 0;
 	params->str = NULL;
 	params->error = 0;
+	params->mem_error = 0;
 }

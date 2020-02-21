@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 22:53:05 by antondob          #+#    #+#             */
-/*   Updated: 2020/02/21 01:56:38 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/22 01:16:32 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	apply_precision(t_params *params)
 
 void	apply_sign(t_params *params)
 {
+	if (!params->str)
+		return ;
 	if (params->sign == -1)
 		params->str = ft_strjoin_free(ft_strdup("-"), params->str);
 	else if (ft_strchr("dif", params->conv_spec))
@@ -59,6 +61,8 @@ void	apply_width(t_params *params)
 	char	filler;
 	char	*tmp;
 
+	if (!params->str)
+		return ;
 	filler = ' ';
 	len = ft_strlen(params->str);
 	if (params->width <= len)
@@ -80,6 +84,8 @@ void	apply_width(t_params *params)
 
 void	apply_alternative(t_params *params)
 {
+	if (!params->str)
+		return ;
 	if (params->alt != 1)
 		return ;
 	if (params->conv_spec == 'o' && *(params->str) != '0')
@@ -92,8 +98,8 @@ void	apply_alternative(t_params *params)
 
 void	apply_flags(t_params *params)
 {
-	if (!params->str)
-		params->str = ft_strnew(0);
+	if (!params->str && !(params->str = ft_strnew(0)))
+		return ;
 	apply_precision(params);
 	if ((params->sign != 0 || params->alt == 1 ||
 		params->space == 1) && params->nul == 1 &&
@@ -108,4 +114,6 @@ void	apply_flags(t_params *params)
 	apply_sign(params);
 	apply_alternative(params);
 	apply_width(params);
+	if (!params->str)
+		params->mem_error = 1;
 }

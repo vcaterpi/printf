@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 19:50:09 by antondob          #+#    #+#             */
-/*   Updated: 2020/02/20 23:52:21 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/21 23:34:12 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void				pf_process_str(t_params *params, char *arg)
 {
 	if (arg == NULL)
 	{
-		params->str = ft_strdup("(null)");
+		if (!(params->str = ft_strdup("(null)")))
+			params->mem_error = 1;
 		return ;
 	}
-	params->str = ft_strdup(arg);
+	if (!(params->str = ft_strdup(arg)))
+		params->mem_error = 1;
 }
 
 long long			get_signed_arg(t_params *params)

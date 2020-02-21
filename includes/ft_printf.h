@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 18:48:06 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/02/21 01:45:59 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/22 01:21:59 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct			s_params
 	char				*format;
 	char				*str;
 	char				preci_bool;
+	int					mem_error;
 }						t_params;
 
 typedef struct			s_big_int
@@ -91,5 +92,6 @@ void					clean_params(t_params *params);
 void					print_string(t_params *params);
 void					print_char(t_params *params, char c);
 int						parse_flags(t_params *params);
+void					print_errors(t_params *params);
 
 #endif

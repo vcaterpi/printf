@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vcaterpi <vcaterpi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 20:37:40 by antondob          #+#    #+#             */
-/*   Updated: 2019/11/23 18:30:27 by vcaterpi         ###   ########.fr       */
+/*   Updated: 2020/02/22 00:02:52 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strjoin_free(char const *s1, char const *s2)
 	size_t	i;
 	size_t	len_s1;
 
+	if (!s1 || !s2)
+		return (NULL);
 	len_s1 = ft_strlen(s1);
 	if (!(join = ft_strnew(len_s1 + ft_strlen(s2) + 1)))
 		return (NULL);

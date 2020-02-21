@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 17:44:10 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/02/21 01:39:11 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/22 01:17:37 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		ft_printf(const char *format, ...)
 				break ;
 			process_arguments(&params);
 			apply_flags(&params);
+			if (params.mem_error == 1)
+				break;
 			print_string(&params);
 			clean_params(&params);
 		}
@@ -37,6 +39,7 @@ int		ft_printf(const char *format, ...)
 		(params.format)++;
 	}
 	clean_params(&params);
+	print_errors(&params);
 	va_end(params.ap);
 	return (params.ret);
 }

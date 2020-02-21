@@ -6,7 +6,7 @@
 /*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 12:57:21 by antondob          #+#    #+#             */
-/*   Updated: 2020/02/21 01:02:52 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/21 23:31:37 by antondob         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ void	pf_itoa_base(t_params *params, unsigned long long arg, int base)
 		arg = (unsigned short)arg;
 	if (arg == 0)
 	{
-		params->str = ft_strnew(1);
-		*(params->str) = (params->preci_bool == 'n' ? '0' : 0);
-		if (params->conv_spec != 'o' && params->conv_spec != 'p')
-			params->alt = 0;
+		if ((params->str = ft_strnew(1)))
+		{
+			*(params->str) = (params->preci_bool == 'n' ? '0' : 0);
+			if (params->conv_spec != 'o' && params->conv_spec != 'p')
+				params->alt = 0;
+		} else
+			params->mem_error = 1;
 		return ;
 	}
 	while (arg > 0)
