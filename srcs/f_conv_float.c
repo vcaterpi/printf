@@ -1,11 +1,12 @@
 #include "../includes/ft_printf.h"
 
-void	get_str(t_float *fl)
+int		get_str(t_float *fl)
 {
 	t_big_int	*tmp;
 	t_big_int	*tmp1;
 
-	tmp = read_ull(fl->m);
+	if (!(tmp = read_ull(fl->m)))
+		return (mem_error_fl(fl));
 	tmp1 = pow_mult(tmp, 5, 63);
 	big_int_del(tmp);
 	if (fl->e < 16383)
@@ -18,6 +19,7 @@ void	get_str(t_float *fl)
 	fl->str = big_int_tostr(tmp);
 	big_int_del(tmp1);
 	big_int_del(tmp);
+	return (0);
 }
 
 void	ft_round(char **intpart, char *fraction, int end)
@@ -87,12 +89,14 @@ void	float_handler(t_params *params, t_float *fl)
 	free(fl->fraction);
 }
 
-void		conv_float(t_params *params)
+int			conv_float(t_params *params)
 {
 	t_float		*fl;
 
-	fl = get_fl(params);
-	get_str(fl);
+	if (!(fl = get_fl(params)))
+		return (mem_error(params));
+	if (get_str(fl))
+		return (mem_error(params));
 	if (params->preci_bool == 'n')
 		params->preci = 6;
 	else if (params->preci < 0)

@@ -25,19 +25,20 @@ void		big_int_del(t_big_int *b_int)
 	free(b_int);
 }
 
-void		b_int_copy(t_big_int **dest, t_big_int *src)
+int		b_int_copy(t_big_int **dest, t_big_int *src)
 {
 	int		i;
 
 	*dest = big_int_new(src->size);
 	if (!(*dest))
-		return ;
+		return (1);
 	i = 0;
 	while (i < (*dest)->size)
 	{
 		((*dest)->arr)[i] = (src->arr)[i];
 		i++;
 	}
+	return (0);
 }
 
 void		b_int_unshift(t_big_int **bb_int)
@@ -56,7 +57,7 @@ void		b_int_unshift(t_big_int **bb_int)
 	*bb_int = new;
 }
 
-void		b_int_push(t_big_int **bb_int, int push)
+int		b_int_push(t_big_int **bb_int, int push)
 {
 	t_big_int	*b_int;
 	t_big_int	*new;
@@ -65,7 +66,7 @@ void		b_int_push(t_big_int **bb_int, int push)
 	b_int = *bb_int;
 	new = big_int_new(b_int->size + 1);
 	if (!new)
-		return ;
+		return (1);
 	i = 0;
 	while (i < b_int->size)
 	{
@@ -75,4 +76,5 @@ void		b_int_push(t_big_int **bb_int, int push)
 	(new->arr)[i] = push;
 	big_int_del(*bb_int);
 	*bb_int = new;
+	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antondob <antondob@student.42.fr>          +#+  +:+       +#+         #
+#    By: smakarov <smakarov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/19 00:08:38 by antondob          #+#    #+#              #
-#    Updated: 2020/02/21 01:00:32 by antondob         ###   ########.fr        #
+#    Updated: 2020/02/22 09:07:41 by smakarov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,8 @@ FUNCS = ft_isdigit.c\
 		f_pf_help.c\
 		f_pow_mult.c\
 		f_read_ll.c\
-		ft_strndup.c
+		ft_strndup.c\
+		f_mem_error.c
 OBJCS = $(patsubst %.c, %.o, $(FUNCS))
 SRCS = $(addprefix $(SRCDIR)/, $(FUNCS))
 HEADERS = -I includes

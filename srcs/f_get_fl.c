@@ -4,10 +4,12 @@ t_float	*get_params(long double f)
 {
 	t_float		*fl;
 
-	fl = (t_float *)malloc(sizeof(t_float));
+	if (!(fl = (t_float *)malloc(sizeof(t_float))))
+		return (NULL);
 	fl->m = *((unsigned long long *)&f);
 	fl->e = *((unsigned short *)&f + 4) & 0x7fff;
 	fl->sign = (char)((*((unsigned short *)&f + 4) & 0x8000) >> 15);
+	fl->mem_error = 0;
 	return (fl);
 }
 

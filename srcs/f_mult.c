@@ -30,7 +30,8 @@ t_big_int	*b_int_mult(t_big_int *b_int, int m)
 	int					i;
 	unsigned long long	mem;
 
-	b_int_copy(&res, b_int);
+	if (b_int_copy(&res, b_int))
+		return (NULL);
 	i = 0;
 	mem = 0;
 	while (i < res->size)
@@ -41,6 +42,7 @@ t_big_int	*b_int_mult(t_big_int *b_int, int m)
 		i++;
 	}
 	if (mem)
-		b_int_push(&res, mem);
+		if (b_int_push(&res, mem))
+			return (NULL);
 	return (res);
 }

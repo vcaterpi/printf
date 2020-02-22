@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smakarov <smakarov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 18:48:06 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/02/21 01:45:59 by antondob         ###   ########.fr       */
+/*   Updated: 2020/02/22 09:05:09 by smakarov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct			s_params
 	char				*format;
 	char				*str;
 	char				preci_bool;
+	int					mem_error; //if mem_error = 1 значит произошла ошибка памяти
 }						t_params;
 
 typedef struct			s_big_int
@@ -53,24 +54,28 @@ typedef struct			s_float
 	char				*str;
 	char				*intpart;
 	char				*fraction;
+	int					mem_error;
 }						t_float;
 
 t_float					*get_params(long double f);
 t_float					*get_fl(t_params *params);
 char					*add_suffix(char *str, int count, char c);
-void					get_str(t_float *fl);
+int						get_str(t_float *fl);
 void					ft_round(char **intpart, char *fraction, int end);
 void					get_fstr(t_params *params, t_float *fl);
 void					float_handler(t_params *params, t_float *fl);
-void					conv_float(t_params *params);
+int						conv_float(t_params *params);
+int						mem_error(t_params *params);
+t_big_int				*mem_error_bi(t_big_int *new);
+int						mem_error_fl(t_float *fl);
 char					*add_prefix(char *str, int count, char c);
 char					*ft_strstick(char **arr, int len, int size);
 char					*big_int_tostr(t_big_int *b_int);
 t_big_int				*big_int_new(int size);
 void					big_int_del(t_big_int *b_int);
-void					b_int_copy(t_big_int **dest, t_big_int *src);
+int						b_int_copy(t_big_int **dest, t_big_int *src);
 void					b_int_unshift(t_big_int **bb_int);
-void					b_int_push(t_big_int **bb_int, int push);
+int						b_int_push(t_big_int **bb_int, int push);
 t_big_int				*b_int_div(t_big_int *b_int, int d);
 t_big_int				*b_int_mult(t_big_int *b_int, int m);
 int						ft_pow(int n, int p);
